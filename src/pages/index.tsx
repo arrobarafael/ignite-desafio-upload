@@ -16,7 +16,7 @@ export default function Home(): JSX.Element {
       },
     });
 
-    console.log(fetchData);
+    // console.log(fetchData);
     return fetchData;
   };
 
