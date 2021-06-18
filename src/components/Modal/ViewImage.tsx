@@ -20,5 +20,6 @@ export function ModalViewImage({
   imgUrl,
 }: ModalViewImageProps): JSX.Element {
   // TODO MODAL WITH IMAGE AND EXTERNAL LINK
+  console.log(imgUrl);
   return <h1>ta</h1>;
 }
