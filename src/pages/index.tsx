@@ -41,6 +41,9 @@ export default function Home(): JSX.Element {
 
   const formattedData = useMemo(() => {
     // TODO FORMAT AND FLAT DATA ARRAY
+    if (data.pages) {
+      return data.pages[0].data.data.map(dog => dog);
+    }
   }, [data]);
 
   // TODO RENDER LOADING SCREEN
