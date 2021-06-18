@@ -9,6 +9,17 @@ import { Loading } from '../components/Loading';
 import { Error } from '../components/Error';
 
 export default function Home(): JSX.Element {
+  const fetchProjects = async ({ pageParam = 0 }) => {
+    const fetchData = await api.get(`/api/images`, {
+      params: {
+        after: pageParam,
+      },
+    });
+
+    console.log(fetchData);
+    return fetchData;
+  };
+
   const {
     data,
     isLoading,
@@ -18,9 +29,14 @@ export default function Home(): JSX.Element {
     hasNextPage,
   } = useInfiniteQuery(
     'images',
-    // TODO AXIOS REQUEST WITH PARAM
-    ,
-    // TODO GET AND RETURN NEXT PAGE PARAM
+    // TODO AXIOS REQUEST WITH PARAM**********
+    fetchProjects,
+    // TODO GET AND RETURN NEXT PAGE PARAM**********
+    {
+      getNextPageParam: res => {
+        return res.after ? res.after : null;
+      },
+    }
   );
 
   const formattedData = useMemo(() => {
