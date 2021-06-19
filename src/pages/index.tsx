@@ -33,17 +33,18 @@ export default function Home(): JSX.Element {
     fetchProjects,
     // TODO GET AND RETURN NEXT PAGE PARAM**********
     {
-      getNextPageParam: res => {
-        return res.after ? res.after : null;
-      },
+      getNextPageParam: lastPage => lastPage.after ?? null,
     }
   );
 
   const formattedData = useMemo(() => {
     // TODO FORMAT AND FLAT DATA ARRAY
     if (data?.pages) {
+      console.log('data');
+      console.log(data);
       return data.pages[0].data.data.map(dog => dog);
     }
+    console.log('has next page? ', hasNextPage);
   }, [data]);
 
   // TODO RENDER LOADING SCREEN
@@ -63,6 +64,9 @@ export default function Home(): JSX.Element {
       <Box maxW={1120} px={20} mx="auto" my={20}>
         <CardList cards={formattedData} />
         {/* TODO RENDER LOAD MORE BUTTON IF DATA HAS NEXT PAGE */}
+        <Button mt={10} onClick={() => fetchNextPage()}>
+          Carregar mais
+        </Button>
       </Box>
     </>
   );
