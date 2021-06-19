@@ -16,7 +16,6 @@ export default function Home(): JSX.Element {
       },
     });
 
-    // console.log(fetchData);
     return fetchData;
   };
 
@@ -39,12 +38,12 @@ export default function Home(): JSX.Element {
 
   const formattedData = useMemo(() => {
     // TODO FORMAT AND FLAT DATA ARRAY
+    console.log('has next page? ', hasNextPage);
     if (data?.pages) {
-      console.log('data');
-      console.log(data);
+      // console.log('data');
+      // console.log(data);
       return data.pages[0].data.data.map(dog => dog);
     }
-    console.log('has next page? ', hasNextPage);
   }, [data]);
 
   // TODO RENDER LOADING SCREEN
@@ -64,7 +63,12 @@ export default function Home(): JSX.Element {
       <Box maxW={1120} px={20} mx="auto" my={20}>
         <CardList cards={formattedData} />
         {/* TODO RENDER LOAD MORE BUTTON IF DATA HAS NEXT PAGE */}
-        <Button mt={10} onClick={() => fetchNextPage()}>
+        <Button
+          mt={10}
+          onClick={() => fetchNextPage()}
+          isLoading={isFetchingNextPage}
+          loadingText="Carregando..."
+        >
           Carregar mais
         </Button>
       </Box>
