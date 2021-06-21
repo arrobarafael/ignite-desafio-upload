@@ -23,8 +23,6 @@ export function CardList({ cards }: CardsProps): JSX.Element {
   const [imageSelected, setImageSelected] = useState('');
 
   // TODO FUNCTION HANDLE VIEW IMAGE
-  console.log('cards');
-  console.log(cards);
 
   function viewImage(url: string) {
     onOpen();
