@@ -33,7 +33,7 @@ export default function Home(): JSX.Element {
     fetchProjects,
     // TODO GET AND RETURN NEXT PAGE PARAM**********
     {
-      getNextPageParam: lastPage => lastPage.data.after ?? null,
+      getNextPageParam: nextPage => nextPage.data.after ?? null,
     }
   );
 
